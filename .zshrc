@@ -2,6 +2,7 @@
 ### Environment variables ###
 #############################
 
+export RPROMPT=%m
 export EDITOR=$MAIN_EDITOR
 export VISUAL=$EDITOR
 export LSCOLORS='exfxcxdxbxegedabagacad'
