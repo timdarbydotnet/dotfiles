@@ -30,13 +30,15 @@ export GREP_COLOR=auto
 setopt no_beep
 setopt interactive_comments
 setopt prompt_subst
-
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_minus
 setopt pushd_silent
 setopt correct
+setopt correct_all
+
+setopt hist_verify
 setopt append_history
 setopt inc_append_history
 setopt extended_history
