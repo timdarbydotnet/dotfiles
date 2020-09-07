@@ -194,3 +194,9 @@ paste-insert() {
 #############
 ### Other ###
 #############
+
+if [[ `uname` == "Darwin" ]]; then
+  gpgconf --launch gpg-agent
+  export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+  export GPG_TTY=$(tty)
+fi
