@@ -2,6 +2,7 @@
 ### Environment variables ###
 #############################
 
+MAIN_EDITOR=vim
 export RPROMPT=%m
 export EDITOR=$MAIN_EDITOR
 export VISUAL=$EDITOR
