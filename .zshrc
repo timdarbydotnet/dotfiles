@@ -2,7 +2,8 @@
 ### Environment variables ###
 #############################
 
-MAIN_EDITOR=vim
+export LANG=en_US.UTF-8
+MAIN_EDITOR=nvim
 export EDITOR=$MAIN_EDITOR
 export VISUAL=$EDITOR
 export LSCOLORS='exfxcxdxbxegedabagacad'
