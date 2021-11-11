@@ -3,25 +3,23 @@
       relink: true
       create: true
 
-
 - clean: ['~']
 
 - create:
   - ~/.vim
 
 - link:
-    # Shell
-    #~/.aliases: shell/.aliases
+    # shell
+    ~/.aliases: shell/.aliases
     ~/.zshrc: shell/.zshrc
 
-    # Git
+    # git
     ~/.gitconfig: git/.gitconfig
     #~/.gitignore: git/.gitignore
   
-    # Vim
-    #~/.vimrc: vim/.vimrc
+    # vim
+    ~/.vimrc: vim/.vimrc
     ~/.config/nvim/init.vim: vim/nvim/init.vim
-    #~/.vim/indent/html.vim: vim/indent/html.vim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

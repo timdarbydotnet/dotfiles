@@ -22,4 +22,4 @@ antigen apply
 export EDITOR=nvim
 
 # Needs to go after antigen
-#source ~/.aliases 
+source ~/.aliases
