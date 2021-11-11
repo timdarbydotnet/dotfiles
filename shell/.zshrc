@@ -23,3 +23,10 @@ export EDITOR=nvim
 
 # Needs to go after antigen
 source ~/.aliases
+
+# Mac: run gpg-agent
+if [[ `uname` == "Darwin" ]]; then
+  gpgconf --launch gpg-agent
+  export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+  export GPG_TTY=$(tty)
+fi
