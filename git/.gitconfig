@@ -1,0 +1,8 @@
+[user]
+	name = Tim Darby
+	email = tim@timdarby.net
+
+[init]
+	defaultBranch = main
+[core]
+	excludesFile = ~/.gitignore
