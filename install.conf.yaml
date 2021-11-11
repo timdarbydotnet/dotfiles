@@ -1,0 +1,29 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+
+- clean: ['~']
+
+- create:
+  - ~/.vim
+
+- link:
+    # Shell
+    #~/.aliases: shell/.aliases
+    ~/.zshrc: shell/.zshrc
+
+    # Git
+    #~/.gitconfig: git/.gitconfig
+    #~/.gitignore: git/.gitignore
+  
+    # Vim
+    #~/.vimrc: vim/.vimrc
+    ~/.config/nvim/init.vim: vim/nvim/init.vim
+    #~/.vim/indent/html.vim: vim/indent/html.vim
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [chsh -s $(which zsh), Making zsh the default shell]
+  #- [git config --global core.excludesFile '~/.gitignore', Set global .gitignore]
