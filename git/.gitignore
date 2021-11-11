@@ -1,0 +1,12 @@
+# mac
+.DS_Store
+._*
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# vscode
+.vscode/*
+
+# all logs
+*.log
