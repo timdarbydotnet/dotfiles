@@ -1,5 +1,7 @@
 ZSH_BASE=$HOME/dotfiles
 
+export LANG=en_US.UTF-8
+
 # antigen
 source $ZSH_BASE/antigen/antigen.zsh
 
