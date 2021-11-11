@@ -6,9 +6,14 @@
 - clean: ['~']
 
 - create:
-  - ~/.vim
+    ~/.vim:
+    ~/.ssh:
+      mode: 0700
 
 - link:
+    # ssh
+    ~/.ssh/config: ssh/config
+
     # shell
     ~/.aliases: shell/.aliases
     ~/.zshrc: shell/.zshrc
