@@ -18,6 +18,8 @@ antigen bundle z
 
 # theme
 antigen theme jackharrisonsherlock/common 
+export COMMON_COLORS_HOST_ME=blue
+export COMMON_COLORS_CURRENT_DIR=green
 
 # apply antigen
 antigen apply
