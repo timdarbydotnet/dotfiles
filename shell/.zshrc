@@ -15,6 +15,8 @@ antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle z
+antigen bundle sudo
+antigen bundle web-search
 
 # theme
 antigen theme jackharrisonsherlock/common 
