@@ -17,7 +17,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle z
 
 # theme
-antigen theme minimal 
+antigen theme jackharrisonsherlock/common 
 
 # apply antigen
 antigen apply
