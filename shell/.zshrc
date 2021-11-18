@@ -2,10 +2,12 @@ ZSH_BASE=$HOME/dotfiles
 ZPLUGINDIR=$HOME/.zsh/plugins
 
 export LANG=en_US.UTF-8
+export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 
 setopt auto_cd
+setopt no_beep
 
 if [[ ! -d $ZPLUGINDIR/zsh-autosuggestions ]]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions $ZPLUGINDIR/zsh-autosuggestions
