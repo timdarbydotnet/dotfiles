@@ -9,6 +9,7 @@
     ~/.vim:
     ~/.ssh:
       mode: 0700
+    ~/.zsh/plugins:
 
 - link:
     # ssh

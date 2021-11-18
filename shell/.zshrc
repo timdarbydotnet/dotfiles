@@ -1,28 +1,36 @@
 ZSH_BASE=$HOME/dotfiles
+ZPLUGINDIR=$HOME/.zsh/plugins
 
 export LANG=en_US.UTF-8
 export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 
-# antigen
-source $ZSH_BASE/antigen/antigen.zsh
+setopt auto_cd
 
-# oh-my-zsh
-antigen use oh-my-zsh
+if [[ ! -d $ZPLUGINDIR/zsh-autosuggestions ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions $ZPLUGINDIR/zsh-autosuggestions
+fi
+if [[ ! -d $ZPLUGINDIR/zsh-history-substring-search ]]; then
+  git clone https://github.com/zsh-users/zsh-history-substring-search $ZPLUGINDIR/zsh-history-substring-search
+fi
+if [[ ! -d $ZPLUGINDIR/zsh-syntax-highlighting ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZPLUGINDIR/zsh-syntax-highlighting
+fi
+if [[ ! -d $ZPLUGINDIR/z ]]; then
+  git clone https://github.com/rupa/z $ZPLUGINDIR/z
+fi
 
-# terminal
-antigen bundle git
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle z
-antigen bundle sudo
-antigen bundle web-search
+source $ZPLUGINDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZPLUGINDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $ZPLUGINDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZPLUGINDIR/z/z.sh
 
 # theme
-antigen theme jackharrisonsherlock/common 
-
-# apply antigen
-antigen apply
+autoload -U colors && colors
+if [[ ! -d $ZPLUGINDIR/common ]]; then
+  git clone https://github.com/jackharrisonsherlock/common $ZPLUGINDIR/common
+fi
+source $ZPLUGINDIR/common/common.zsh-theme
 
 # theme colors
 export COMMON_COLORS_HOST_ME=blue
@@ -31,7 +39,6 @@ export COMMON_COLORS_CURRENT_DIR=green
 # default editor
 export EDITOR=nvim
 
-# needs to go after antigen
 source ~/.aliases
 
 # Mac: run gpg-agent
