@@ -9,30 +9,38 @@ export SAVEHIST=$HISTSIZE
 setopt auto_cd
 setopt no_beep
 
-if [[ ! -d $ZPLUGINDIR/zsh-autosuggestions ]]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions $ZPLUGINDIR/zsh-autosuggestions
-fi
-if [[ ! -d $ZPLUGINDIR/zsh-history-substring-search ]]; then
-  git clone https://github.com/zsh-users/zsh-history-substring-search $ZPLUGINDIR/zsh-history-substring-search
-fi
-if [[ ! -d $ZPLUGINDIR/zsh-syntax-highlighting ]]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZPLUGINDIR/zsh-syntax-highlighting
-fi
-if [[ ! -d $ZPLUGINDIR/z ]]; then
-  git clone https://github.com/rupa/z $ZPLUGINDIR/z
-fi
+# clone the plugin repo, source the plugin and add it to the fpath
+function plugin-load () {
+  local giturl="$1"
+  local plugin_name="$2"
+  local plugin_init="$3"
+  local plugindir="${ZPLUGINDIR:-$HOME/.zsh/plugins}/$plugin_name"
 
-source $ZPLUGINDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZPLUGINDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
-source $ZPLUGINDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZPLUGINDIR/z/z.sh
+  # clone if the plugin isn't there already
+  if [[ ! -d $plugindir ]]; then
+    command git clone --depth 1 --recursive --shallow-submodules $giturl $plugindir
+    if [[ $? -ne 0 ]]; then
+      echo "plugin-load: git clone failed for: $giturl" >&2 && return 1
+    fi
+  fi
+
+  # source the plugin
+  source $plugindir/$plugin_init
+
+  # modify fpath
+  fpath+=$plugindir
+  [[ -d $plugindir/functions ]] && fpath+=$plugindir/functions
+}
+
+# plugins
+plugin-load https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions zsh-autosuggestions.zsh
+plugin-load https://github.com/zsh-users/zsh-history-substring-search zsh-history-substring-search zsh-history-substring-search.zsh
+plugin-load https://github.com/zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting zsh-syntax-highlighting.zsh
+plugin-load https://github.com/rupa/z z z.sh
 
 # theme
 autoload -U colors && colors
-if [[ ! -d $ZPLUGINDIR/common ]]; then
-  git clone https://github.com/jackharrisonsherlock/common $ZPLUGINDIR/common
-fi
-source $ZPLUGINDIR/common/common.zsh-theme
+plugin-load https://github.com/jackharrisonsherlock/common common common.zsh-theme
 
 # theme colors
 export COMMON_COLORS_HOST_ME=blue
