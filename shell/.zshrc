@@ -11,9 +11,10 @@ setopt no_beep
 
 # clone the plugin repo, source the plugin and add it to the fpath
 function plugin-load () {
-  local giturl="$1"
-  local plugin_name="$2"
-  local plugin_init="$3"
+  local plugin_path="$1"
+  local plugin_init="$2"
+  local giturl="https://github.com/$plugin_path"
+  local plugin_name=${plugin_path##*/}
   local plugindir="${ZPLUGINDIR:-$HOME/.zsh/plugins}/$plugin_name"
 
   # clone if the plugin isn't there already
@@ -33,14 +34,14 @@ function plugin-load () {
 }
 
 # plugins
-plugin-load https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions zsh-autosuggestions.zsh
-plugin-load https://github.com/zsh-users/zsh-history-substring-search zsh-history-substring-search zsh-history-substring-search.zsh
-plugin-load https://github.com/zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting zsh-syntax-highlighting.zsh
-plugin-load https://github.com/rupa/z z z.sh
+plugin-load zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
+plugin-load zsh-users/zsh-history-substring-search zsh-history-substring-search.zsh
+plugin-load zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh
+plugin-load rupa/z z.sh
 
 # theme
 autoload -U colors && colors
-plugin-load https://github.com/jackharrisonsherlock/common common common.zsh-theme
+plugin-load jackharrisonsherlock/common common.zsh-theme
 
 # theme colors
 export COMMON_COLORS_HOST_ME=blue
