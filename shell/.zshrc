@@ -2,12 +2,43 @@ ZSH_BASE=$HOME/dotfiles
 ZPLUGINDIR=$HOME/.zsh/plugins
 
 export LANG=en_US.UTF-8
+
+# history
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
+setopt hist_verify
+setopt append_history
+setopt inc_append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt share_history
 
+# terminal
 setopt auto_cd
 setopt no_beep
+setopt interactive_comments
+setopt prompt_subst
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_minus
+setopt pushd_silent
+setopt long_list_jobs
+
+# completion
+autoload -U compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*:default' list-colors ''
+# case-insensitive, partial-word, and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
 # clone the plugin repo, source the plugin and add it to the fpath
 function plugin-load () {
