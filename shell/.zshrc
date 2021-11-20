@@ -97,6 +97,9 @@ common_current_dir() {
   echo -n "%{$fg_bold[$COMMON_COLORS_CURRENT_DIR]%}%c%{$reset_color%} "
 }
 
+PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status)$(common_return_status)'
+unset RPROMPT
+
 # default editor
 export EDITOR=nvim
 
