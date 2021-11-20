@@ -1,3 +1,6 @@
 alias vim="nvim"
 
-alias ls='ls --color=auto'
+# Linux: alias ls to get colors
+if [[ `uname` == "Linux" ]]; then
+  alias ls="ls --color=auto"
+fi

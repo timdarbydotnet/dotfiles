@@ -2,7 +2,12 @@ ZSH_BASE=$HOME/dotfiles
 ZPLUGINDIR=$HOME/.zsh/plugins
 
 export LANG=en_US.UTF-8
-export LSCOLORS='exfxcxdxbxegedabagacad'
+
+# Not Linux: LSCOLORS
+if [[ `uname` != "Linux" ]]; then
+  export LSCOLORS='exfxcxdxbxegedabagacad'
+  export CLICOLOR=1
+fi
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
 # history
@@ -39,7 +44,10 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+# Linux: dircolors
+if [[ `uname` == "Linux" ]]; then
+  eval "$(dircolors -b)"
+fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
