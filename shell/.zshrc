@@ -1,4 +1,4 @@
-ZSH_BASE=$HOME/dotfiles
+ZSH_BASE=$HOME/.dotfiles
 ZPLUGINDIR=$HOME/.zsh/plugins
 
 export LANG=en_US.UTF-8
